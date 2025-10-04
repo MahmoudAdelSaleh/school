@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدرسة الخدمة الثانوية العامة المشتركة - الرئيسية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* الخطوط الأساسية والتنسيق العام */
+        body {
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+            text-align: right;
+        }
+
+        /* شريط التنقل */
+        .navbar {
+            background-color: #007bff; /* لون أزرق جذاب */
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-container {
+            width: 90%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffc107; /* لون أصفر للتأثير */
+        }
+
+        /* منطقة العرض الرئيسية (البطل) - تم تبسيطها للمحتوى الموجز */
+        .hero {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 50px 20px; /* تقليل الـ padding لجعلها أقصر */
+        }
+
+        .hero h1 {
+            font-size: 2.5em; /* تصغير الخط قليلاً */
+            margin-bottom: 5px;
+        }
+
+        .hero h2 {
+            font-size: 1.2em; /* تصغير الخط قليلاً */
+            margin-bottom: 0;
+            font-weight: 400;
+        }
+        
+        /* تنسيق الأقسام الرئيسية */
+        .section {
+            padding: 40px 0; /* تقليل الـ padding لجعل الأقسام أقصر */
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 30px; /* تقليل الـ margin */
+            font-weight: 700;
+            border-bottom: 3px solid #ffc107;
+            display: block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 5px;
+        }
+
+        /* رسالة المدير */
+        .director-message {
+            background-color: white;
+            padding: 25px; /* تقليل الـ padding */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            text-align: justify;
+        }
+
+        .director-message p {
+            line-height: 1.7; /* تقليل التباعد قليلاً */
+            margin-bottom: 10px;
+        }
+
+        .director-message strong {
+            display: block;
+            margin-top: 15px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        /* الإعلانات / الجداول */
+        .news-table, .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            text-align: right;
+            border-radius: 8px;
+            overflow: hidden; 
+        }
+
+        .news-table th, .news-table td,
+        .results-table th, .results-table td {
+            padding: 10px; /* تقليل الـ padding */
+            border-bottom: 1px solid #ddd;
+            text-align: right;
+        }
+
+        .news-table th, .results-table th {
+            background-color: #007bff;
+            color: white;
+            font-weight: 700;
+            border-bottom: 2px solid #ffc107;
+        }
+
+        .results-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        /* قسم الاستعلام */
+        .inquiry-box {
+            background-color: #fff;
+            padding: 30px; /* تقليل الـ padding */
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            max-width: 500px; /* تقليل العرض قليلاً */
+            margin: 20px auto;
+            text-align: center;
+            border: 1px solid #007bff;
+        }
+
+        .inquiry-box label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #007bff;
+            font-size: 1em;
+        }
+
+        .inquiry-box input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 0.9em;
+            transition: border-color 0.3s;
+        }
+
+        .inquiry-box input[type="text"]:focus {
+            border-color: #28a745;
+            outline: none;
+        }
+
+        .inquiry-box button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1em;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        .inquiry-box button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        #results-area {
+            margin-top: 20px;
+            text-align: right;
+            min-height: 80px;
+        }
+
+        .error-message, .success-message {
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            text-align: right;
+        }
+        
+        .error-message {
+            color: #dc3545;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+
+        .success-message {
+            color: #28a745;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+        
+        /* Loading spinner CSS */
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, .1);
+            border-left-color: #007bff;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* التذييل */
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0; /* تقليل الـ padding */
+            text-align: center;
+        }
+
+        .footer-content {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            text-align: right;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 10px;
+            text-align: right;
+        }
+
+        .copyright {
+            text-align: center;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .footer h4 {
+            color: #ffc107;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .footer p {
+            margin: 3px 0;
+            font-size: 0.8em;
+        }
+
+        /* تصميم متجاوب (للهواتف والأجهزة الصغيرة) */
+        @media (max-width: 768px) {
+            .navbar-container {
+                flex-direction: column;
+            }
+            .nav-links {
+                margin-top: 10px;
+                text-align: center;
+            }
+            .nav-links a {
+                margin: 0 8px;
+            }
+            .hero {
+                padding: 40px 20px;
+            }
+            .hero h1 {
+                font-size: 2em;
+            }
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            .contact-info {
+                text-align: center;
+                width: 100%;
+            }
+            .inquiry-box {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo"><a href="#home">مدرسة الخدمة الثانوية العامة المشتركة</a></div>
+            <div class="nav-links">
+                <a href="#home">الرئيسية</a>
+                <a href="#contact">تواصل معنا</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1>مدرسة الخدمة الثانوية العامة المشتركة</h1>
+            <h2>"تعليم متكامل، قيادة فاعلة، ومواطنة مسؤولة."</h2>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2>كلمة المدير</h2>
+        <div class="director-message">
+            <p><strong>مرحباً بكم في بيتنا التعليمي،</strong></p>
+            <p>أبنائي وبناتي الأعزاء، أولياء الأمور الكرام، نفخر في مدرسة الخدمة بكوننا بيئة محفزة تجمع بين التميز الأكاديمي والرعاية الشاملة. نلتزم بغرس القيم والأخلاق الحميدة وتوفير أحدث الأدوات التعليمية لضمان أن يمتلك خريجونا مفاتيح النجاح في المرحلة الجامعية والحياة المهنية. نتطلع إلى شراكة مستمرة وفاعلة معكم لتحقيق رؤيتنا المشتركة.</p>
+            <strong>المدير / [رجب عبد العزيز سالم ]</strong>
+        </div>
+    </section>
+
+    <section class="section" style="background-color: #e9ecef;">
+        <h2>استعلام بيانات منصة كوريو (AI)</h2>
+        <div class="inquiry-box">
+            <label for="nationalId">الرجاء إدخال الرقم القومي للطالب:</label>
+            <input type="text" id="nationalId" placeholder="أدخل الرقم القومي 14 رقم..." maxlength="14" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+            <button onclick="searchStudentData()">البحث عن بيانات الدخول</button>
+            <div id="results-area">
+                </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>أخبار وإعلانات هامة</h2>
+        <table class="news-table">
+            <thead>
+                <tr>
+                    <th>التاريخ</th>
+                    <th>العنوان</th>
+                    <th>التفاصيل</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>**05/10/2025**</td>
+                    <td>**بيانات الدخول لمنصة الذكاء الإصطناعي**</td>
+                    <td>يرجى استخدام أداة الاستعلام أعلاه للحصول على بيانات دخول منصة كوريو.</td>
+                </tr>
+                <tr>
+                    </tr>
+            </tbody>
+        </table>
+        </section>
+
+    <footer id="contact" class="footer">
+        <div class="footer-content">
+            <div class="contact-info">
+                <h4>بيانات الاتصال</h4>
+                <p>العنوان: [قرية واحد - مركز إدكو - محافظة البحيرة ]</p>
+                <p>هاتف: [012345678910]</p>
+                <p>بريد إلكتروني: [alkhedma.sec@gmail.com]</p>
+            </div>
+            <div class="copyright">
+                <p>حقوق النشر © 2025 مدرسة الخدمة الثانوية العامة المشتركة. جميع الحقوق محفوظة.</p>
+                <p>مع تحيات محمود عادل</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app-compat.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-analytics-compat.js"></script>
+    
+    <script>
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAxyKaH34L-IDFOA4j4YMHAFfuYKaA-BjQ",
+            authDomain: "khedma-sec.firebaseapp.com",
+            projectId: "khedma-sec",
+            storageBucket: "khedma-sec.firebasestorage.app",
+            messagingSenderId: "671564737679",
+            appId: "1:671564737679:web:212314283f72968ecad4fa",
+            measurementId: "G-LHB4Y87ZT6"
+        };
+        
+        // **تهيئة تطبيق Firebase**
+        const app = firebase.initializeApp(firebaseConfig);
+        
+        // تهيئة Google Analytics إذا كان مطلوباً
+        // firebase.analytics();
+
+        /**
+         * دالة جلب بيانات الطلاب من ملف JSON والبحث فيها.
+         * تم تحويل الدالة إلى async/await لجلب البيانات باستخدام Fetch API.
+         */
+        async function searchStudentData() {
+            const nationalIdInput = document.getElementById('nationalId').value.trim();
+            const resultsArea = document.getElementById('results-area');
+            resultsArea.innerHTML = '<div class="spinner"></div>'; // Show loading spinner
+
+            // Validate input (must be 14 digits)
+            if (nationalIdInput.length !== 14 || !/^\d+$/.test(nationalIdInput)) {
+                resultsArea.innerHTML = '<div class="error-message">الرجاء إدخال رقم قومي صحيح مكون من 14 رقمًا.</div>';
+                return;
+            }
+
+            try {
+                // Fetch data from data.json file (يجب أن يكون الملف في نفس المجلد)
+                const response = await fetch('data.json');
+
+                if (!response.ok) {
+                    throw new Error(`Error fetching file: ${response.status} ${response.statusText}`);
+                }
+
+                const studentData = await response.json();
+
+                // Search for the student using "الرقم القومي"
+                // The national ID in the data is converted to a string for comparison consistency
+                const student = studentData.find(s => String(s["الرقم القومي"]) === nationalIdInput);
+
+                if (student) {
+                    // Display results if student is found
+                    const platformLink = student["رابط منصة "]; // Note the space in the key
+                    
+                    const resultsHtml = `
+                        <div class="success-message">تم العثور على بيانات الطالب بنجاح!</div>
+                        <table class="results-table">
+                            <thead>
+                                <tr>
+                                    <th>البيان</th>
+                                    <th>القيمة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>الاسم الكامل</td>
+                                    <td>${student["الاسم"]}</td>
+                                </tr>
+                                <tr>
+                                    <td>الكود</td>
+                                    <td>${student["الكود"]}</td>
+                                </tr>
+                                <tr>
+                                    <td>اليوزر نيم (اسم المستخدم)</td>
+                                    <td>${student["اسم المستخدم"]}</td>
+                                </tr>
+                                <tr>
+                                    <td>كلمة المرور</td>
+                                    <td><span style="color:#dc3545; font-weight:700;">${student["كلمة المرور"]}</span></td>
+                                </tr>
+                                <tr>
+                                    <td>رابط المنصة</td>
+                                    <td>
+                                        <a href="${platformLink}" target="_blank" style="color:#28a745; text-decoration:underline; font-weight:700;">انقر للذهاب إلى منصة كوريو</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    `;
+                    resultsArea.innerHTML = resultsHtml;
+                } else {
+                    // Message if student is not found
+                    resultsArea.innerHTML = '<div class="error-message">عذرًا، لم يتم العثور على بيانات لهذا الرقم القومي. يرجى التأكد من الإدخال أو التواصل مع إدارة المدرسة.</div>';
+                }
+
+            } catch (error) {
+                // Handle any errors during fetching or processing data
+                console.error("Error fetching or processing data:", error);
+                resultsArea.innerHTML = '<div class="error-message">حدث خطأ أثناء جلب البيانات (تأكد من وجود ملف data.json). يرجى المحاولة لاحقًا.</div>';
+            }
+        }
+    </script>
+
+</body>
+</html>
