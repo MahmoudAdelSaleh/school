@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نتائج مدرسة الخدمة الثانوية 2026</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        :root { --primary: #1a252f; --accent: #d4af37; --silver: #c0c0c0; --bg: #f4f4f9; }
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg); margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding-bottom: 80px; }
+        
+        .greeting-card { background: linear-gradient(135deg, #1a252f, #2c3e50); color: white; padding: 15px; text-align: center; border-bottom: 5px solid var(--accent); width: 100%; max-width: 411px; margin-bottom: 10px; }
+        .greeting-card h2 { margin: 0; font-size: 1.2rem; color: var(--accent); }
+        .greeting-card p { margin: 8px 0 0; font-size: 0.9rem; line-height: 1.4; }
+
+        .tabs { display: flex; gap: 4px; margin: 10px auto; width: 100%; max-width: 411px; padding: 0 10px; }
+        .tab-btn { flex: 1; padding: 10px 2px; border: none; background: #ccc; cursor: pointer; border-radius: 8px; font-weight: bold; font-size: 0.75rem; }
+        .tab-btn.active { background: var(--accent); color: #000; }
+
+        .search-container { width: 100%; max-width: 411px; padding: 0 10px; margin-bottom: 15px; }
+        #searchInput { width: 100%; padding: 12px; border: 3px solid var(--primary); border-radius: 25px; font-size: 1rem; text-align: center; outline: none; }
+
+        #resultsContainer { width: 100%; max-width: 411px; display: flex; flex-direction: column; align-items: center; padding: 0 10px; }
+        .student-card { background: white; width: 100%; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 20px; border: 2px solid #ddd; overflow: hidden; }
+        .card-inner { padding: 0; background: white; }
+        .card-header { background: #f8f9fa; text-align: center; padding: 12px; border-bottom: 2px solid var(--accent); }
+        .card-header h3 { margin: 0; color: #1a252f; font-size: 1.1rem; }
+        
+        .data-row { display: flex; justify-content: space-between; padding: 8px 15px; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+        .data-row.total { background: #1a252f; color: white; font-weight: bold; }
+        .data-row.extra { background: #eee; font-weight: bold; font-size: 0.75rem; justify-content: center; color: #555; }
+        
+        .download-btn { display: block; width: 90%; margin: 10px auto; padding: 10px; background: #27ae60; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+
+        .footer-marquee-box { position: fixed; bottom: 0; left: 0; width: 100%; background: black; border-top: 4px solid yellow; border-bottom: 4px solid yellow; z-index: 1000; overflow: hidden; height: 45px; display: flex; align-items: center; }
+        .moving-text { white-space: nowrap; position: absolute; animation: slideLeft 12s linear infinite; font-weight: bold; font-size: 1rem; }
+        @keyframes slideLeft { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .shimmer-text { animation: colorChange 2s linear infinite; }
+        @keyframes colorChange { 0%, 100% { color: var(--accent); } 50% { color: var(--silver); } }
+        .no-data { text-align: center; padding: 30px; color: #888; }
+    </style>
+</head>
+<body>
+
+<div class="greeting-card">
+    <h2>أجمل التهاني بالنجاح</h2>
+    <p>يهنئ السيد الأستاذ / <strong>رجب عبد العزيز سالم</strong> مدير المدرسة<br> وأسرة معلمي المدرسة أبناءنا الطلاب بالتفوق</p>
+</div>
+
+<div class="tabs">
+    <button class="tab-btn active" onclick="setGrade('1')">أولى ثانوي</button>
+    <button class="tab-btn" onclick="setGrade('2_sci')">تانية علمي</button>
+    <button class="tab-btn" onclick="setGrade('2_art')">تانية أدبي</button>
+</div>
+
+<div class="search-container">
+    <input type="text" id="searchInput" onkeyup="search()" placeholder="ابحث باسم الطالب أو رقم الجلوس">
+</div>
+
+<div id="resultsContainer"><div class="no-data">يرجى كتابة الاسم للاستعلام</div></div>
+
+<div class="footer-marquee-box">
+    <div class="moving-text shimmer-text">
+         أ / محمود عادل صالح - نتمنى لجميع الطلاب دوام التوفيق
+    </div>
+</div>
+
+<script>
+let currentGrade = '1';
+
+const grade1 = [
+    {j:217, n:"رنا محمد منصور ابوهيسه بكر", ar:93, en:96, ma:96, hi:97, sc:94, ph:94, sum:570, rel:94, fr:79, pr:92, ed:85, sp:93},
+    {j:205, n:"ايمان احمد عبدالحليم طعيمه", ar:92, en:93, ma:99, hi:98, sc:91, ph:96, sum:569, rel:96, fr:91, pr:94, ed:75, sp:87},
+    {j:260, n:"مصطفى السيد جمال السيدبدر", ar:93, en:93, ma:96, hi:97, sc:91, ph:78, sum:548, rel:94, fr:87, pr:86, ed:75, sp:75},
+    {j:246, n:"حمدى نشأت على عبد الحكم على", ar:95, en:87, ma:94, hi:98, sc:93, ph:72, sum:539, rel:94, fr:87, pr:92, ed:80, sp:85},
+    {j:229, n:"مريم مدحت ابراهيم محمود الفضالى", ar:89, en:81, ma:96, hi:97, sc:81, ph:91, sum:535, rel:91, fr:76, pr:88, ed:80, sp:80},
+    {j:239, n:"هاجر خالد إبراهيم محمد ابو مايلة", ar:93, en:83, ma:85, hi:96, sc:88, ph:89, sum:534, rel:96, fr:92, pr:97, ed:80, sp:90},
+    {j:263, n:"يوسف محمد علي عبد الهادي ريحان", ar:93, en:87, ma:93, hi:100, sc:90, ph:70, sum:533, rel:93, fr:92, pr:88, ed:80, sp:88},
+    {j:219, n:"زهيره محمود محمد عبدالجيد عبدالجواد", ar:86, en:78, ma:95, hi:95, sc:92, ph:84, sum:530, rel:87, fr:70, pr:94, ed:80, sp:92},
+    {j:238, n:"نورا عزت على محمد سمسم", ar:88, en:87, ma:94, hi:91, sc:85, ph:80, sum:525, rel:85, fr:78, pr:97, ed:80, sp:95},
+    {j:245, n:"اياد عبد الحليم راضي محمد راضي", ar:88, en:87, ma:95, hi:97, sc:88, ph:69, sum:524, rel:93, fr:84, pr:86, ed:75, sp:75},
+    {j:244, n:"احمد اشرف عبدالفتاح محمد خليف", ar:87, en:79, ma:83, hi:97, sc:96, ph:81, sum:523, rel:89, fr:100, pr:88, ed:75, sp:95},
+    {j:232, n:"ملك مدحت ابراهيم محمود الفضالى", ar:89, en:77, ma:99, hi:93, sc:78, ph:82, sum:518, rel:90, fr:78, pr:95, ed:80, sp:77},
+    {j:226, n:"عزه اسامه كمال عبد الوهاب بسيونى ابوزيد", ar:83, en:85, ma:94, hi:93, sc:80, ph:82, sum:517, rel:87, fr:82, pr:88, ed:75, sp:79},
+    {j:224, n:"شيماء عوض هليل نمر هليل", ar:89, en:82, ma:84, hi:87, sc:83, ph:86, sum:511, rel:83, fr:79, pr:91, ed:85, sp:91},
+    {j:216, n:"رنا ادهم عباس رجب الجمال", ar:88, en:85, ma:89, hi:98, sc:72, ph:78, sum:510, rel:92, fr:75, pr:90, ed:85, sp:91},
+    {j:257, n:"محمود قطب على نعيم على شقيدف", ar:89, en:89, ma:82, hi:91, sc:93, ph:66, sum:510, rel:93, fr:93, pr:85, ed:80, sp:88},
+    {j:214, n:"رحمه عطيه حمود مؤمن عبد الكريم", ar:92, en:72, ma:83, hi:89, sc:86, ph:85, sum:507, rel:90, fr:78, pr:97, ed:80, sp:81},
+    {j:228, n:"مريم محمد إبراهيم محمد أبومايلة", ar:86, en:77, ma:85, hi:95, sc:85, ph:76, sum:504, rel:85, fr:80, pr:88, ed:75, sp:92},
+    {j:211, n:"حنين السيد زغلول شرف", ar:88, en:87, ma:77, hi:87, sc:77, ph:85, sum:501, rel:85, fr:75, pr:95, ed:80, sp:88},
+    {j:213, n:"ذكرى إبراهيم عبدالوهاب دومة محمود", ar:90, en:72, ma:84, hi:87, sc:85, ph:77, sum:495, rel:89, fr:81, pr:92, ed:80, sp:75},
+    {j:250, n:"عبدالرحمن عبدالعزيز عطيه عوض الطيب", ar:87, en:86, ma:75, hi:94, sc:84, ph:69, sum:495, rel:91, fr:83, pr:84, ed:75, sp:87},
+    {j:241, n:"هبه كريم عبد الحميد بدر", ar:90, en:80, ma:87, hi:86, sc:78, ph:73, sum:494, rel:88, fr:72, pr:82, ed:75, sp:81},
+    {j:251, n:"علي ياسر علي الوزان", ar:88, en:85, ma:81, hi:93, sc:81, ph:65, sum:493, rel:90, fr:85, pr:83, ed:75, sp:80},
+    {j:202, n:"اسماء احمد على عاشور", ar:87, en:79, ma:78, hi:86, sc:77, ph:79, sum:486, rel:85, fr:76, pr:97, ed:75, sp:76},
+    {j:252, n:"عمر اكرم فتح اللـه ابو عمر", ar:88, en:79, ma:77, hi:94, sc:80, ph:68, sum:486, rel:86, fr:88, pr:95, ed:75, sp:87},
+    {j:235, n:"ندا السيد ابراهيم عبد الله النجار", ar:83, en:80, ma:76, hi:83, sc:83, ph:78, sum:483, rel:86, fr:83, pr:96, ed:75, sp:95},
+    {j:258, n:"محمود محمد الشحات السيدابوعيسى", ar:84, en:88, ma:65, hi:95, sc:81, ph:69, sum:482, rel:94, fr:72, pr:87, ed:75, sp:86},
+    {j:210, n:"حبيبه محمود محمد شمس الدين", ar:88, en:80, ma:66, hi:88, sc:77, ph:82, sum:481, rel:86, fr:76, pr:93, ed:75, sp:92},
+    {j:221, n:"سميحة كرم عبد الخالق عبد المجيد شهاب الدين", ar:84, en:70, ma:81, hi:82, sc:77, ph:87, sum:481, rel:85, fr:74, pr:93, ed:80, sp:93},
+    {j:201, n:"اسراء عبد المنعم ابراهيم النجار", ar:93, en:76, ma:64, hi:87, sc:74, ph:86, sum:480, rel:93, fr:83, pr:90, ed:75, sp:91},
+    {j:259, n:"محى فؤاد عبدالمقصود احمد السقا", ar:88, en:71, ma:81, hi:89, sc:77, ph:73, sum:479, rel:96, fr:93, pr:86, ed:75, sp:76},
+    {j:233, n:"ملك مصطفى حلمى ابراهيم حجاج", ar:85, en:83, ma:68, hi:89, sc:68, ph:83, sum:476, rel:92, fr:81, pr:89, ed:75, sp:91},
+    {j:261, n:"مصطفى محمد مصطفى مصطفى الشامى", ar:86, en:73, ma:74, hi:93, sc:78, ph:72, sum:476, rel:82, fr:91, pr:86, ed:75, sp:91},
+    {j:240, n:"هاجر محمد محمود عاشور", ar:88, en:80, ma:71, hi:85, sc:78, ph:72, sum:474, rel:82, fr:74, pr:84, ed:80, sp:76},
+    {j:203, n:"اماني محمد صابر محمود الفضالى", ar:89, en:75, ma:94, hi:79, sc:61, ph:75, sum:473, rel:87, fr:75, pr:90, ed:80, sp:77},
+    {j:247, n:"زياد فاروق سعد محمد الطويل", ar:88, en:77, ma:76, hi:94, sc:73, ph:65, sum:473, rel:93, fr:73, pr:95, ed:80, sp:86},
+    {j:208, n:"بسنت شريف سلامة شلبي", ar:92, en:75, ma:78, hi:85, sc:68, ph:72, sum:470, rel:86, fr:77, pr:91, ed:75, sp:77},
+    {j:212, n:"دنيا محمد عبدالله احمد سيداحمد", ar:83, en:74, ma:67, hi:84, sc:80, ph:81, sum:469, rel:80, fr:74, pr:90, ed:80, sp:77},
+    {j:215, n:"رشا علاء أحمد متولي عبده", ar:89, en:66, ma:77, hi:94, sc:67, ph:75, sum:468, rel:92, fr:77, pr:92, ed:80, sp:90},
+    {j:206, n:"ايمان تامر رمضان حمادى", ar:86, en:74, ma:67, hi:91, sc:71, ph:78, sum:467, rel:97, fr:75, pr:92, ed:75, sp:94},
+    {j:223, n:"شرين عبدالوهاب سليمان حمادى", ar:83, en:76, ma:78, hi:88, sc:65, ph:77, sum:467, rel:87, fr:80, pr:83, ed:85, sp:88},
+    {j:230, n:"ملك أحمد خميس البقلي", ar:82, en:82, ma:84, hi:76, sc:62, ph:80, sum:466, rel:88, fr:80, pr:86, ed:80, sp:81},
+    {j:207, n:"ايمان على عبد اللطيف زكى شاهين", ar:87, en:73, ma:76, hi:82, sc:66, ph:75, sum:459, rel:90, fr:73, pr:86, ed:75, sp:89},
+    {j:256, n:"محمد عبد السلام فتح الله بيطح", ar:85, en:76, ma:70, hi:85, sc:68, ph:71, sum:455, rel:89, fr:85, pr:89, ed:80, sp:88},
+    {j:269, n:"حنين صبري السيد عبد العزيز خليفة", ar:85, en:87, ma:62, hi:83, sc:69, ph:68, sum:454, rel:86, fr:90, pr:93, ed:75, sp:90},
+    {j:262, n:"يوسف عصام ابراهيم المليجى ابراهيم", ar:83, en:76, ma:69, hi:87, sc:71, ph:67, sum:453, rel:88, fr:88, pr:82, ed:80, sp:95},
+    {j:237, n:"ندى محمد ابراهيم محمد مرشدى", ar:84, en:74, ma:76, hi:88, sc:56, ph:74, sum:452, rel:88, fr:76, pr:83, ed:80, sp:77},
+    {j:249, n:"عبد الله أحمد علي أحمد الحوفي", ar:91, en:77, ma:66, hi:85, sc:66, ph:67, sum:452, rel:90, fr:92, pr:88, ed:80, sp:78},
+    {j:254, n:"فتحى حماده فتحى مبروك عيسى", ar:86, en:71, ma:74, hi:87, sc:69, ph:62, sum:449, rel:97, fr:77, pr:90, ed:80, sp:85},
+    {j:222, n:"شروق هاني علي أحمد متولي الحوفى", ar:84, en:75, ma:59, hi:81, sc:72, ph:75, sum:446, rel:91, fr:80, pr:93, ed:80, sp:90},
+    {j:234, n:"ناهد جمعة على هوارى بدر", ar:86, en:65, ma:75, hi:80, sc:63, ph:75, sum:444, rel:88, fr:73, pr:93, ed:75, sp:86},
+    {j:225, n:"شيماء مصطفى محمد متولى الكفراوى", ar:85, en:75, ma:58, hi:81, sc:70, ph:74, sum:443, rel:91, fr:77, pr:86, ed:85, sp:93},
+    {j:274, n:"نور عبد الكريم عوض هواري", ar:84, en:80, ma:59, hi:87, sc:64, ph:69, sum:443, rel:92, fr:75, pr:91, ed:70, sp:90},
+    {j:204, n:"أمل إبراهيم بشير السيد الدرينى", ar:84, en:70, ma:69, hi:83, sc:63, ph:73, sum:442, rel:87, fr:74, pr:96, ed:85, sp:89},
+    {j:227, n:"مريم صبري السيد عبد العزيز خليفة", ar:85, en:79, ma:57, hi:82, sc:55, ph:82, sum:440, rel:87, fr:89, pr:89, ed:75, sp:81},
+    {j:265, n:"امل محمد احمد ابراهيم الشافعى عبد الله", ar:84, en:73, ma:60, hi:85, sc:67, ph:71, sum:440, rel:87, fr:71, pr:95, ed:70, sp:90},
+    {j:248, n:"عبد الله السيد عبد الله حفنى", ar:88, en:77, ma:64, hi:79, sc:65, ph:64, sum:437, rel:85, fr:80, pr:94, ed:80, sp:83},
+    {j:268, n:"جنه عصام أحمد متولي عبده", ar:85, en:80, ma:58, hi:82, sc:61, ph:71, sum:437, rel:88, fr:71, pr:95, ed:70, sp:90},
+    {j:255, n:"كريم عبده محمود بديوى", ar:84, en:76, ma:56, hi:83, sc:70, ph:67, sum:436, rel:93, fr:86, pr:93, ed:80, sp:92},
+    {j:220, n:"ساره خميس هنداوى عبد السيد عبد الله", ar:83, en:75, ma:77, hi:76, sc:57, ph:67, sum:435, rel:84, fr:77, pr:89, ed:80, sp:82},
+    {j:264, n:"يوسف ممدوح إبراهيم فتح الله عشماوي", ar:84, en:73, ma:71, hi:80, sc:67, ph:59, sum:434, rel:89, fr:88, pr:86, ed:80, sp:85},
+    {j:218, n:"ريهام وجيه مصطفى السقا", ar:82, en:76, ma:61, hi:78, sc:55, ph:78, sum:430, rel:92, fr:85, pr:86, ed:85, sp:90},
+    {j:272, n:"مروه عبد الحليم سالم عبد الحليم مناصير", ar:83, en:72, ma:58, hi:88, sc:67, ph:62, sum:430, rel:87, fr:81, pr:95, ed:70, sp:90},
+    {j:275, n:"نور محمد ضيف غضبان", ar:78, en:82, ma:60, hi:75, sc:69, ph:66, sum:430, rel:86, fr:81, pr:95, ed:70, sp:90},
+    {j:281, n:"محمد محمود المليجي خاطر", ar:79, en:82, ma:60, hi:73, sc:66, ph:68, sum:428, rel:81, fr:73, pr:91, ed:70, sp:90},
+    {j:236, n:"ندى عادل سعد شلبى الصوالحى", ar:86, en:72, ma:65, hi:81, sc:49, ph:69, sum:422, rel:82, fr:82, pr:87, ed:75, sp:84},
+    {j:231, n:"ملك صبرى عبدالفتاح عبده بدر", ar:84, en:68, ma:63, hi:92, sc:46, ph:68, sum:421, rel:87, fr:76, pr:93, ed:80, sp:78},
+    {j:242, n:"هنا أمين رمضان بسيوني علي داود", ar:87, en:76, ma:54, hi:81, sc:53, ph:69, sum:420, rel:88, fr:80, pr:86, ed:75, sp:89},
+    {j:209, n:"حبيبه عيد زكريا السيدحسن", ar:84, en:60, ma:65, hi:75, sc:58, ph:76, sum:418, rel:82, fr:77, pr:86, ed:75, sp:94},
+    {j:278, n:"زياد وليد منصور ابوهيسه بكر", ar:79, en:80, ma:60, hi:73, sc:56, ph:68, sum:416, rel:83, fr:74, pr:85, ed:75, sp:90},
+    {j:243, n:"ابراهيم هيثم ابراهيم محمد أبومايلة", ar:84, en:62, ma:71, hi:80, sc:62, ph:56, sum:415, rel:89, fr:86, pr:88, ed:75, sp:92},
+    {j:253, n:"عمر محمد إسماعيل علي عباسي", ar:81, en:74, ma:61, hi:82, sc:60, ph:55, sum:413, rel:88, fr:73, pr:90, ed:75, sp:93},
+    {j:285, n:"يوسف عبد المحسن محمد محمد جميعي", ar:81, en:73, ma:54, hi:76, sc:54, ph:71, sum:409, rel:83, fr:72, pr:87, ed:75, sp:90},
+    {j:266, n:"ألاء طه كمال سعيد البرداني", ar:81, en:71, ma:52, hi:75, sc:57, ph:64, sum:400, rel:81, fr:68, pr:80, ed:70, sp:90},
+    {j:267, n:"بسملة عبد الهادى السيد علوانى وهدان", ar:80, en:71, ma:60, hi:63, sc:62, ph:64, sum:400, rel:85, fr:74, pr:91, ed:70, sp:90},
+    {j:270, n:"خلود رضا إبراهيم الدريني", ar:78, en:75, ma:57, hi:74, sc:48, ph:67, sum:399, rel:86, fr:71, pr:89, ed:75, sp:90},
+    {j:279, n:"عبد الشافى ابراهيم عبد الشافى شلبى", ar:80, en:76, ma:56, hi:74, sc:46, ph:66, sum:398, rel:77, fr:74, pr:91, ed:70, sp:90},
+    {j:277, n:"أنس حمدي علي عبد العزيز عبد السلام", ar:80, en:76, ma:52, hi:72, sc:46, ph:66, sum:392, rel:84, fr:81, pr:93, ed:75, sp:90},
+    {j:284, n:"مصطفى ظريف محمد ابراهيم قرقر", ar:82, en:78, ma:55, hi:65, sc:46, ph:66, sum:392, rel:82, fr:84, pr:88, ed:75, sp:90},
+    {j:271, n:"سما ابرهيم محمد عويس", ar:84, en:73, ma:60, hi:77, sc:35, ph:62, sum:391, rel:85, fr:77, pr:80, ed:75, sp:90},
+    {j:273, n:"مريم سالم السيد المقمر", ar:81, en:73, ma:57, hi:62, sc:54, ph:63, sum:390, rel:88, fr:72, pr:91, ed:70, sp:90},
+    {j:280, n:"علاء عيد رواق رشوان", ar:80, en:62, ma:53, hi:67, sc:51, ph:69, sum:382, rel:87, fr:72, pr:91, ed:70, sp:90},
+    {j:276, n:"أدم أحمد رمضان حجازي", ar:78, en:76, ma:52, hi:61, sc:57, ph:56, sum:380, rel:81, fr:67, pr:95, ed:75, sp:90},
+    {j:283, n:"مصطفى رضا فتح الله بيطح", ar:80, en:60, ma:50, hi:71, sc:51, ph:56, sum:368, rel:79, fr:76, pr:87, ed:75, sp:90},
+    {j:282, n:"محمد نصرالله عبدالخالق نصرالله عوض حم", ar:82, en:61, ma:38, hi:71, sc:37, ph:62, sum:351, rel:82, fr:71, pr:84, ed:75, sp:90}
+];
+
+const grade2_sci = [
+    {j:115, n:"نسرين سالم محمد محمد", ar:75, en:53, ma:49, hi:48, ch:47, ph:50, sum:320, rel:40, fr:34, civ:23, ed:17, sp:25},
+    {j:105, n:"سما محمود عبد اللطيف زكى شاهين", ar:71, en:49, ma:55, hi:50, ch:43, ph:46, sum:312, rel:39, fr:36, civ:23, ed:16, sp:25},
+    {j:112, n:"نداء حمام احمد مرسي عبد الله", ar:72, en:44, ma:55, hi:45, ch:45, ph:49, sum:308, rel:39, fr:34, civ:23, ed:17, sp:25},
+    {j:147, n:"أحمد معوض رجب نصر زين الدين", ar:71, en:50, ma:53, hi:41, ch:43, ph:50, sum:307, rel:36, fr:35, civ:23, ed:15, sp:25},
+    {j:110, n:"ملك إسماعيل محمود الطوابه", ar:77, en:51, ma:44, hi:50, ch:42, ph:43, sum:305, rel:38, fr:35, civ:23, ed:17, sp:25},
+    {j:116, n:"همسة إبراهيم محمد إبراهيم عويس", ar:76, en:50, ma:45, hi:50, ch:42, ph:43, sum:304, rel:40, fr:35, civ:24, ed:17, sp:25},
+    {j:149, n:"شهاوي علي عطية الرفاعي", ar:70, en:56, ma:37, hi:50, ch:37, ph:54, sum:303, rel:36, fr:36, civ:23, ed:16, sp:25},
+    {j:104, n:"ساميه عبد الحميد رمضان حامد محمد ابوطاحون", ar:68, en:47, ma:52, hi:48, ch:39, ph:48, sum:300, rel:39, fr:34, civ:24, ed:16, sp:25},
+    {j:125, n:"عبدالرحمن احمد السيد حسن السيد", ar:71, en:43, ma:33, hi:53, ch:49, ph:52, sum:300, rel:36, fr:30, civ:24, ed:16, sp:25},
+    {j:137, n:"اسراء طاهر جوده صبره حميده", ar:69, en:52, ma:46, hi:48, ch:38, ph:47, sum:299, rel:36, fr:36, civ:23, ed:17, sp:25},
+    {j:111, n:"ملك أحمد محمد أبو نعمه", ar:73, en:48, ma:47, hi:49, ch:36, ph:46, sum:298, rel:38, fr:33, civ:23, ed:17, sp:25},
+    {j:123, n:"حمدي أحمد حسين أحمد عمارة", ar:72, en:43, ma:44, hi:41, ch:48, ph:50, sum:297, rel:37, fr:30, civ:24, ed:17, sp:25},
+    {j:140, n:"رحمة عبد الحكيم على محمود حكيم", ar:73, en:44, ma:45, hi:45, ch:41, ph:49, sum:296, rel:37, fr:30, civ:23, ed:17, sp:25},
+    {j:106, n:"شروق احمد فرج عمر بدر", ar:72, en:47, ma:52, hi:41, ch:40, ph:45, sum:296, rel:39, fr:34, civ:24, ed:16, sp:25},
+    {j:152, n:"محمد هانى عبد العليم زاهر", ar:74, en:45, ma:36, hi:50, ch:43, ph:47, sum:292, rel:38, fr:34, civ:24, ed:17, sp:25},
+    {j:101, n:"ايمان علام محمد عبد الحميد مبارك", ar:69, en:46, ma:48, hi:46, ch:39, ph:45, sum:291, rel:38, fr:33, civ:24, ed:16, sp:25},
+    {j:124, n:"سعد عون عبدالهادى حميده", ar:82, en:40, ma:37, hi:43, ch:41, ph:44, sum:286, rel:37, fr:31, civ:24, ed:16, sp:25},
+    {j:142, n:"شمس مصطفى ابراهيم زكى شاهين", ar:68, en:50, ma:40, hi:47, ch:43, ph:39, sum:285, rel:35, fr:29, civ:24, ed:16, sp:25},
+    {j:109, n:"مريم محمود فؤاد خليفة", ar:71, en:49, ma:49, hi:40, ch:29, ph:45, sum:282, rel:37, fr:33, civ:22, ed:17, sp:25},
+    {j:150, n:"عبدالرحمن محروس حسين الششتاوى", ar:69, en:55, ma:36, hi:44, ch:42, ph:37, sum:282, rel:36, fr:35, civ:22, ed:17, sp:25},
+    {j:103, n:"جنات خميس رزق السيد درويش", ar:70, en:46, ma:46, hi:37, ch:40, ph:44, sum:281, rel:38, fr:33, civ:24, ed:16, sp:25},
+    {j:119, n:"أحمد السيد فتحى سليم", ar:70, en:46, ma:40, hi:43, ch:40, ph:44, sum:281, rel:38, fr:29, civ:24, ed:16, sp:25},
+    {j:130, n:"ياسين احمد حسين جادالله هارون", ar:73, en:44, ma:37, hi:34, ch:47, ph:47, sum:281, rel:34, fr:31, civ:24, ed:15, sp:25},
+    {j:148, n:"خالد محمد إبراهيم أبو مايلة", ar:69, en:53, ma:31, hi:45, ch:42, ph:42, sum:281, rel:37, fr:31, civ:24, ed:16, sp:25},
+    {j:102, n:"أمل مساعد عبد الحليم شامخ فرج", ar:72, en:44, ma:34, hi:50, ch:40, ph:41, sum:280, rel:37, fr:29, civ:23, ed:16, sp:25},
+    {j:107, n:"فاطمة عماد محمد أحمدعبد الفتاح", ar:69, en:47, ma:45, hi:46, ch:34, ph:37, sum:275, rel:37, fr:33, civ:24, ed:16, sp:25},
+    {j:139, n:"أميره إبراهيم عبدالجليل عبدالقادر حميده", ar:70, en:46, ma:41, hi:43, ch:39, ph:38, sum:275, rel:35, fr:35, civ:23, ed:17, sp:25},
+    {j:117, n:"ياسمين فتحى جمال محمد الملاح", ar:72, en:44, ma:46, hi:35, ch:37, ph:42, sum:275, rel:38, fr:32, civ:23, ed:17, sp:25},
+    {j:122, n:"حسين خميس حسين صالح حسين", ar:68, en:44, ma:38, hi:46, ch:36, ph:45, sum:275, rel:37, fr:30, civ:24, ed:17, sp:25},
+    {j:143, n:"غاده عبد الرازق مكايد فايز محمد", ar:70, en:43, ma:43, hi:42, ch:36, ph:41, sum:275, rel:35, fr:33, civ:23, ed:16, sp:25},
+    {j:141, n:"شمس خميس حسن حسن خليفه", ar:66, en:47, ma:41, hi:43, ch:38, ph:40, sum:274, rel:37, fr:29, civ:23, ed:16, sp:25},
+    {j:126, n:"عطيه محمد عطيه عبدالرحمن زيد", ar:69, en:39, ma:39, hi:38, ch:42, ph:48, sum:274, rel:38, fr:31, civ:22, ed:16, sp:25},
+    {j:120, n:"بشير رجب أبوالفتوح صالح", ar:71, en:47, ma:38, hi:39, ch:43, ph:35, sum:272, rel:38, fr:31, civ:24, ed:17, sp:25},
+    {j:121, n:"حسام رامى محمد عطيه رمضان", ar:73, en:47, ma:36, hi:38, ch:35, ph:45, sum:272, rel:37, fr:29, civ:22, ed:17, sp:25},
+    {j:145, n:"احمد عبد الله شعبان احمد السقا", ar:73, en:44, ma:34, hi:41, ch:40, ph:41, sum:271, rel:38, fr:32, civ:22, ed:15, sp:25},
+    {j:153, n:"محمود محمد عوض رياض عوض", ar:67, en:53, ma:33, hi:41, ch:38, ph:39, sum:270, rel:37, fr:34, civ:23, ed:16, sp:25},
+    {j:151, n:"عبدالله محمد محمد عبدالله ابراهيم", ar:69, en:51, ma:32, hi:38, ch:40, ph:40, sum:268, rel:37, fr:36, civ:23, ed:17, sp:25},
+    {j:138, n:"أسماء زاهى عوض فايز بريك", ar:69, en:46, ma:40, hi:39, ch:36, ph:39, sum:266, rel:37, fr:30, civ:23, ed:17, sp:25},
+    {j:114, n:"ندى محمد محمود بديوي", ar:69, en:41, ma:43, hi:41, ch:36, ph:36, sum:265, rel:37, fr:33, civ:23, ed:17, sp:25},
+    {j:113, n:"ندى محمد عبدالعاطى عطيه منيسى", ar:69, en:45, ma:44, hi:37, ch:37, ph:34, sum:265, rel:38, fr:32, civ:23, ed:17, sp:25},
+    {j:128, n:"محمد محمود عطيه عبدالرحمن زيد", ar:69, en:41, ma:34, hi:33, ch:39, ph:44, sum:258, rel:36, fr:30, civ:24, ed:16, sp:25},
+    {j:144, n:"ياسمين عبد الحميد عبد الخالق العسال", ar:66, en:45, ma:43, hi:37, ch:33, ph:35, sum:258, rel:35, fr:28, civ:23, ed:16, sp:25},
+    {j:108, n:"فرحه حمادة ناجى عبدالعافى حميده", ar:68, en:43, ma:40, hi:38, ch:35, ph:34, sum:257, rel:36, fr:33, civ:24, ed:17, sp:25},
+    {j:127, n:"محمد رزق رياض محليس", ar:65, en:38, ma:35, hi:42, ch:39, ph:37, sum:254, rel:37, fr:30, civ:23, ed:16, sp:25},
+    {j:155, n:"فريد محمود حامد محمد منيسى", ar:67, en:41, ma:36, hi:36, ch:35, ph:39, sum:253, rel:35, fr:35, civ:23, ed:17, sp:25},
+    {j:129, n:"محمد وجدى دسوقى ذكى شاهين", ar:68, en:34, ma:33, hi:37, ch:42, ph:39, sum:251, rel:35, fr:29, civ:23, ed:17, sp:25},
+    {j:118, n:"اسلام بزيد ذكى محمد", ar:69, en:48, ma:29, hi:28, ch:37, ph:37, sum:246, rel:37, fr:28, civ:23, ed:16, sp:25},
+    {j:154, n:"مسعد طارق مسعد محمد الدسوقي", ar:68, en:41, ma:36, hi:29, ch:35, ph:38, sum:245, rel:36, fr:30, civ:23, ed:17, sp:25},
+    {j:146, n:"أحمد عادل عبد المنصف عبد الفتاح ابو العينين", ar:68, en:36, ma:33, hi:34, ch:43, ph:30, sum:242, rel:37, fr:30, civ:22, ed:15, sp:25}
+];
+
+const grade2_art = [
+    {j:133, n:"أمل محمد عبدالله محمودعبدالودود", ar:71, en:49, ma:49, hi:51, ge:53, py:53, sum:324, rel:39, fr:32, civ:24, ed:16, sp:25},
+    {j:135, n:"بسمة غريب رمضان عباس عبد الحافظ", ar:71, en:50, ma:45, hi:53, ge:55, py:50, sum:322, rel:39, fr:30, civ:23, ed:16, sp:25},
+    {j:134, n:"آية أيمن عادل ذكي رياض", ar:69, en:49, ma:47, hi:51, ge:53, py:53, sum:321, rel:39, fr:30, civ:23, ed:16, sp:25},
+    {j:132, n:"امنية ماهر سعد وهدان", ar:66, en:47, ma:49, hi:48, ge:52, py:50, sum:311, rel:38, fr:31, civ:23, ed:17, sp:25},
+    {j:159, n:"سماح محمد عبد الحق احمد بيطح", ar:70, en:47, ma:45, hi:50, ge:49, py:49, sum:309, rel:36, fr:30, civ:24, ed:16, sp:25},
+    {j:156, n:"احمد عيد محمد عميرة", ar:72, en:51, ma:42, hi:46, ge:44, py:46, sum:300, rel:37, fr:35, civ:24, ed:16, sp:25},
+    {j:136, n:"شادية أيمن رمضان عباس عبد الصمد", ar:62, en:48, ma:38, hi:49, ge:52, py:48, sum:295, rel:38, fr:30, civ:23, ed:16, sp:25},
+    {j:158, n:"محمد هانى عبد الجليل سعد جدران", ar:71, en:40, ma:33, hi:44, ge:45, py:48, sum:279, rel:38, fr:28, civ:23, ed:16, sp:25},
+    {j:157, n:"أحمد محمد كمال عثمان شعلة", ar:68, en:49, ma:31, hi:41, ge:44, py:46, sum:278, rel:35, fr:35, civ:23, ed:16, sp:25},
+    {j:131, n:"محمد صلاح محمد عبدالرحمن غريب", ar:63, en:39, ma:33, hi:35, ge:43, py:35, sum:247, rel:34, fr:27, civ:23, ed:15, sp:25}
+];
+
+function setGrade(grade) {
+    currentGrade = grade;
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+    search();
+}
+
+function search() {
+    const q = document.getElementById('searchInput').value.trim().toLowerCase();
+    const container = document.getElementById('resultsContainer');
+    if(!q) { container.innerHTML = '<div class="no-data">يرجى كتابة الاسم للاستعلام</div>'; return; }
+
+    let data = currentGrade === '1' ? grade1 : (currentGrade === '2_sci' ? grade2_sci : grade2_art);
+    const filtered = data.filter(s => s.n.includes(q) || s.j.toString() === q);
+
+    if(filtered.length === 0) { container.innerHTML = '<div class="no-data">عذراً، لا توجد نتائج</div>'; return; }
+
+    container.innerHTML = '';
+    filtered.forEach((s, idx) => {
+        let cardId = `c-${idx}`;
+        let html = `
+            <div class="student-card" id="${cardId}">
+                <div class="card-inner">
+                    <div class="card-header">
+                        <h3>${s.n}</h3>
+                        <small>رقم الجلوس: ${s.j}</small>
+                    </div>
+                    <div class="data-row"><span>العربية</span><b>${s.ar}</b></div>
+                    <div class="data-row"><span>الإنجليزية</span><b>${s.en}</b></div>
+                    <div class="data-row"><span>الرياضيات</span><b>${s.ma}</b></div>
+                    ${currentGrade === '1' ? `
+                        <div class="data-row"><span>التاريخ</span><b>${s.hi}</b></div>
+                        <div class="data-row"><span>العلوم</span><b>${s.sc}</b></div>
+                        <div class="data-row"><span>الفلسفة</span><b>${s.ph}</b></div>
+                        <div class="data-row total"><span>المجموع الكلي</span><b>${s.sum} / 600</b></div>
+                        <div class="data-row extra">مواد لا تضاف للمجموع</div>
+                        <div class="data-row"><span>الدين</span><b>${s.rel}</b></div>
+                        <div class="data-row"><span>الفرنسي</span><b>${s.fr}</b></div>
+                        <div class="data-row"><span>البرمجة</span><b>${s.pr}</b></div>
+                    ` : (currentGrade === '2_sci' ? `
+                        <div class="data-row"><span>التاريخ</span><b>${s.hi}</b></div>
+                        <div class="data-row"><span>كيمياء</span><b>${s.ch}</b></div>
+                        <div class="data-row"><span>فيزياء</span><b>${s.ph}</b></div>
+                        <div class="data-row total"><span>المجموع الكلي</span><b>${s.sum} / 380</b></div>
+                        <div class="data-row extra">مواد لا تضاف للمجموع</div>
+                        <div class="data-row"><span>الدين</span><b>${s.rel}</b></div>
+                        <div class="data-row"><span>الفرنسي</span><b>${s.fr}</b></div>
+                        <div class="data-row"><span>الوطنية</span><b>${s.civ}</b></div>
+                    ` : `
+                        <div class="data-row"><span>التاريخ</span><b>${s.hi}</b></div>
+                        <div class="data-row"><span>الجغرافيا</span><b>${s.ge}</b></div>
+                        <div class="data-row"><span>علم النفس</span><b>${s.py}</b></div>
+                        <div class="data-row total"><span>المجموع الكلي</span><b>${s.sum} / 380</b></div>
+                        <div class="data-row extra">مواد لا تضاف للمجموع</div>
+                        <div class="data-row"><span>الدين</span><b>${s.rel}</b></div>
+                        <div class="data-row"><span>الفرنسي</span><b>${s.fr}</b></div>
+                        <div class="data-row"><span>الوطنية</span><b>${s.civ}</b></div>
+                    `)}
+                    <div class="data-row"><span>نشاط تربوي</span><b>${s.ed}</b></div>
+                    <div class="data-row"><span>نشاط رياضي</span><b>${s.sp}</b></div>
+                </div>
+                <button class="download-btn" onclick="downloadImg('${cardId}', '${s.n}')">تحميل الشهادة كصورة</button>
+            </div>
+        `;
+        container.innerHTML += html;
+    });
+}
+
+function downloadImg(id, name) {
+    const card = document.querySelector(`#${id} .card-inner`);
+    html2canvas(card, { scale: 3 }).then(canvas => {
+        const a = document.createElement('a');
+        a.download = `نتيجة_${name}.png`;
+        a.href = canvas.toDataURL();
+        a.click();
+    });
+}
+</script>
+</body>
+</html>
