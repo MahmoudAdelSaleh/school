@@ -1,68 +1,68 @@
-<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مدرسة الخدمة الثانوية العامة المشتركة - الرئيسية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: Tajawal, sans-serif; margin: 0px; padding: 0px; background-color: rgb(248, 249, 250); color: rgb(52, 58, 64); text-align: right; }
-        .navbar { background-color: rgb(0, 123, 255); color: white; padding: 15px 0px; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; }
-        .navbar-container { width: 90%; margin: 0px auto; display: flex; justify-content: space-between; align-items: center; }
+        body { font-family: 'Tajawal', sans-serif; margin: 0; padding: 0; background-color: #f8f9fa; color: #343a40; text-align: right; }
+        .navbar { background-color: #007bff; color: white; padding: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .navbar-container { width: 90%; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .logo a { color: white; text-decoration: none; font-size: 1.5em; font-weight: 700; }
         .nav-links a { color: white; text-decoration: none; margin-right: 20px; font-weight: 400; transition: color 0.3s; }
-        .nav-links a:hover { color: rgb(255, 193, 7); }
-        .hero { background-color: rgb(0, 123, 255); color: white; text-align: center; padding: 50px 20px; }
+        .nav-links a:hover { color: #ffc107; }
+        .hero { background-color: #007bff; color: white; text-align: center; padding: 50px 20px; }
         .hero h1 { font-size: 2.5em; margin-bottom: 5px; }
-        .hero h2 { font-size: 1.2em; margin-bottom: 0px; font-weight: 400; }
-        .section { padding: 40px 0px; width: 90%; max-width: 1200px; margin: 0px auto; }
-        .section h2 { text-align: center; color: rgb(0, 123, 255); margin-bottom: 30px; font-weight: 700; border-bottom: 3px solid rgb(255, 193, 7); display: block; width: fit-content; margin-left: auto; margin-right: auto; padding-bottom: 5px; }
-        .director-message { background-color: white; padding: 25px; border-radius: 8px; box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 10px; text-align: justify; }
-        
-        /* تنسيق قسم النتيجة الجديد */
-        .result-banner {
-            background: linear-gradient(135deg, #ffc107, #ff9800);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            margin: 20px auto;
-            border: 2px dashed #000;
-        }
-        .result-banner h3 { color: #000; margin-bottom: 15px; font-size: 1.5rem; }
-        .result-btn {
-            display: inline-block;
-            background-color: #000;
-            color: #ffc107 !important;
-            padding: 15px 40px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.3rem;
-            transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        .result-btn:hover { transform: scale(1.05); background-color: #222; }
+        .hero h2 { font-size: 1.2em; margin-bottom: 0; font-weight: 400; }
+        .section { padding: 40px 0; width: 90%; max-width: 1200px; margin: 0 auto; }
+        .section h2 { text-align: center; color: #007bff; margin-bottom: 30px; font-weight: 700; border-bottom: 3px solid #ffc107; display: block; width: fit-content; margin-left: auto; margin-right: auto; padding-bottom: 5px; }
+        .director-message { background-color: white; padding: 25px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05); text-align: justify; }
+        .director-message p { line-height: 1.7; margin-bottom: 10px; }
+        .director-message strong { display: block; margin-top: 15px; text-align: left; font-weight: 700; }
+        .news-table, .results-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; text-align: right; border-radius: 8px; overflow: hidden; }
+        .news-table th, .news-table td, .results-table th, .results-table td { padding: 10px; border-bottom: 1px solid #ddd; text-align: right; }
+        .news-table th, .results-table th { background-color: #007bff; color: white; font-weight: 700; border-bottom: 2px solid #ffc107; }
+        .results-table tr:nth-child(even) { background-color: #f2f2f2; }
+        .inquiry-box { background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 15px rgba(0,0,0,0.1); max-width: 500px; margin: 20px auto; text-align: center; border: 1px solid #007bff; }
+        .inquiry-box label { display: block; margin-bottom: 8px; font-weight: 700; color: #007bff; font-size: 1em; }
+        .inquiry-box input[type="text"] { width: 100%; padding: 10px; margin-bottom: 15px; border: 2px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 0.9em; transition: border-color 0.3s; }
+        .inquiry-box input[type="text"]:focus { border-color: #28a745; outline: none; }
+        .inquiry-box button { background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 1em; transition: background-color 0.3s, transform 0.1s; }
+        .inquiry-box button:hover { background-color: #0056b3; transform: translateY(-2px); }
+        #results-area { margin-top: 20px; text-align: right; min-height: 80px; }
+        .success-message { color: #28a745; background-color: #d4edda; border: 1px solid #c3e6cb; padding: 10px; border-radius: 6px; font-size: 0.9em; text-align: right; }
+        .footer { background-color: #343a40; color: white; padding: 20px 0; text-align: center; }
+        .footer-content { width: 90%; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; text-align: right; }
+        .contact-info { flex: 1 1 0; min-width: 200px; margin-bottom: 10px; text-align: right; }
+        .copyright { text-align: center; width: 100%; margin-top: 10px; }
+        .footer h4 { color: #ffc107; margin-bottom: 10px; font-size: 1.1em; }
+        .footer p { margin: 3px 0; font-size: 0.8em; }
 
-        .news-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; text-align: right; border-radius: 8px; overflow: hidden; }
-        .news-table th, .news-table td { padding: 10px; border-bottom: 1px solid rgb(221, 221, 221); }
-        .news-table th { background-color: rgb(0, 123, 255); color: white; }
-        .inquiry-box { background-color: white; padding: 30px; border-radius: 12px; box-shadow: rgba(0,0,0,0.1) 0 8px 15px; max-width: 500px; margin: 20px auto; text-align: center; border: 1px solid #007bff; }
-        .footer { background-color: rgb(52, 58, 64); color: white; padding: 20px 0px; text-align: center; }
-        .footer-content { width: 90%; max-content: 1200px; margin: 0px auto; display: flex; justify-content: space-between; flex-wrap: wrap; }
-        @media (max-width: 768px) { .navbar-container { flex-direction: column; } .hero h1 { font-size: 2em; } }
+        @media (max-width: 768px) {
+            .navbar-container { flex-direction: column; }
+            .nav-links { margin-top: 10px; text-align: center; }
+            .nav-links a { margin: 0 8px; }
+            .hero { padding: 40px 20px; }
+            .hero h1 { font-size: 2em; }
+            .footer-content { flex-direction: column; align-items: center; }
+            .contact-info { text-align: center; width: 100%; }
+        }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
         <div class="navbar-container">
-            <div class="logo"><a href="#">مدرسة الخدمة الثانوية العامة المشتركة</a></div>
+            <div class="logo"><a href="#home">مدرسة الخدمة الثانوية العامة المشتركة</a></div>
             <div class="nav-links">
-                <a href="#">الرئيسية</a>
+                <a href="#home">الرئيسية</a>
                 <a href="#contact">تواصل معنا</a>
             </div>
         </div>
     </nav>
 
-    <header class="hero">
+    <header id="home" class="hero">
         <div class="hero-content">
             <h1>مدرسة الخدمة الثانوية العامة المشتركة</h1>
             <h2>"تعليم متكامل، قيادة فاعلة، ومواطنة مسؤولة."</h2>
@@ -72,18 +72,9 @@
     <section class="section">
         <h2>كلمة المدير</h2>
         <div class="director-message">
-            <p>أبنائي وبناتي الأعزاء، أولياء الأمور الكرام، نفخر في مدرسة الخدمة بكوننا بيئة محفزة تجمع بين التميز الأكاديمي والرعاية الشاملة. نلتزم بغرس القيم والأخلاق الحميدة وتوفير أحدث الأدوات التعليمية لضمان أن يمتلك خريجونا مفاتيح النجاح.</p>
+            <p><strong>مرحباً بكم في بيتنا التعليمي،</strong></p>
+            <p>أبنائي وبناتي الأعزاء، أولياء الأمور الكرام، نفخر في مدرسة الخدمة بكوننا بيئة محفزة تجمع بين التميز الأكاديمي والرعاية الشاملة. نلتزم بغرس القيم والأخلاق الحميدة وتوفير أحدث الأدوات التعليمية لضمان أن يمتلك خريجونا مفاتيح النجاح في المرحلة الجامعية والحياة المهنية.</p>
             <strong>المدير / رجب عبد العزيز سالم</strong>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="result-banner">
-            <h3>🎊 الآن نتيجة امتحانات الفصل الدراسي الأول 2026 🎊</h3>
-            <p>يمكنكم الآن الاستعلام عن نتائج الصف الأول والثاني الثانوي</p>
-            <a href="https://firebasestorage.googleapis.com/v0/b/khedma-sec.firebasestorage.app/o/result.html?alt=media&token=ee33ebea-1c6a-44cd-8435-af7006f396df" class="result-btn">
-                اضغط هنا للدخول لصفحة النتيجة
-            </a>
         </div>
     </section>
 
@@ -92,16 +83,39 @@
         <div class="inquiry-box">
             <label for="nationalId">الرجاء إدخال الرقم القومي للطالب:</label>
             <input type="text" id="nationalId" placeholder="أدخل الرقم القومي 14 رقم..." maxlength="14">
-            <button>البحث عن بيانات الدخول</button>
+            <button onclick="searchStudent()">البحث عن بيانات الدخول</button>
+            <div id="results-area">
+                </div>
         </div>
+    </section>
+
+    <section class="section">
+        <h2>أخبار وإعلانات هامة</h2>
+        <table class="news-table">
+            <thead>
+                <tr>
+                    <th>التاريخ</th>
+                    <th>العنوان</th>
+                    <th>التفاصيل</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>05/10/2025</td>
+                    <td>بيانات الدخول لمنصة الذكاء الإصطناعي</td>
+                    <td>يرجى استخدام أداة الاستعلام أعلاه للحصول على بيانات دخول منصة كوريو.</td>
+                </tr>
+            </tbody>
+        </table>
     </section>
 
     <footer id="contact" class="footer">
         <div class="footer-content">
             <div class="contact-info">
                 <h4>بيانات الاتصال</h4>
-                <p>العنوان: [قرية واحد - مركز إدكو - محافظة البحيرة ]</p>
-                <p>بريد إلكتروني: [alkhedma.sec@gmail.com]</p>
+                <p>العنوان: قرية واحد - مركز إدكو - محافظة البحيرة</p>
+                <p>هاتف: 012345678910</p>
+                <p>بريد إلكتروني: alkhedma.sec@gmail.com</p>
             </div>
             <div class="copyright">
                 <p>حقوق النشر © 2025 مدرسة الخدمة الثانوية العامة المشتركة. جميع الحقوق محفوظة.</p>
@@ -110,4 +124,26 @@
         </div>
     </footer>
 
-</body></html>
+    <script>
+        function searchStudent() {
+            const id = document.getElementById('nationalId').value;
+            const resultsArea = document.getElementById('results-area');
+            
+            if(id === "12345678901234") { // مثال فقط
+                resultsArea.innerHTML = `
+                    <div class="success-message">تم العثور على بيانات الطالب بنجاح!</div>
+                    <table class="results-table">
+                        <tbody>
+                            <tr><td>الاسم الكامل</td><td>ملك مصطفى حلمى ابراهيم حجاج</td></tr>
+                            <tr><td>الكود</td><td>463750647</td></tr>
+                            <tr><td>اليوزر نيم</td><td>463750647</td></tr>
+                            <tr><td>كلمة المرور</td><td><span style="color:#dc3545; font-weight:700;">_cDt!n!6</span></td></tr>
+                        </tbody>
+                    </table>`;
+            } else {
+                resultsArea.innerHTML = `<div style="color:red;">يرجى إدخال رقم قومي صحيح للتجربة.</div>`;
+            }
+        }
+    </script>
+</body>
+</html>
