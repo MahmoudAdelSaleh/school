@@ -20,41 +20,29 @@
         .director-message { background-color: white; padding: 25px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05); text-align: justify; }
         .director-message p { line-height: 1.7; margin-bottom: 10px; }
         .director-message strong { display: block; margin-top: 15px; text-align: left; font-weight: 700; }
-        .news-table, .results-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; text-align: right; border-radius: 8px; overflow: hidden; }
-        .news-table th, .news-table td, .results-table th, .results-table td { padding: 10px; border-bottom: 1px solid #ddd; text-align: right; }
-        .news-table th, .results-table th { background-color: #007bff; color: white; font-weight: 700; border-bottom: 2px solid #ffc107; }
-        .results-table tr:nth-child(even) { background-color: #f2f2f2; }
         .inquiry-box { background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 15px rgba(0,0,0,0.1); max-width: 500px; margin: 20px auto; text-align: center; border: 1px solid #007bff; }
         .inquiry-box label { display: block; margin-bottom: 8px; font-weight: 700; color: #007bff; font-size: 1em; }
-        .inquiry-box input[type="text"] { width: 100%; padding: 10px; margin-bottom: 15px; border: 2px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 0.9em; transition: border-color 0.3s; }
+        .inquiry-box input[type="text"] { width: 100%; padding: 10px; margin-bottom: 15px; border: 2px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 0.9em; transition: border-color 0.3s; text-align: center; }
         .inquiry-box input[type="text"]:focus { border-color: #28a745; outline: none; }
-        .inquiry-box button { background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 1em; transition: background-color 0.3s, transform 0.1s; }
+        .inquiry-box button { background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 1em; transition: background-color 0.3s, transform 0.1s; width: 100%; }
         .inquiry-box button:hover { background-color: #0056b3; transform: translateY(-2px); }
-        #results-area { margin-top: 20px; text-align: right; min-height: 80px; }
-        .success-message { color: #28a745; background-color: #d4edda; border: 1px solid #c3e6cb; padding: 10px; border-radius: 6px; font-size: 0.9em; text-align: right; }
-        .footer { background-color: #343a40; color: white; padding: 20px 0; text-align: center; }
+        #results-area { margin-top: 20px; text-align: center; min-height: 40px; }
+        .error-message { color: #dc3545; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 10px; border-radius: 6px; font-size: 0.9em; }
+        .spinner { border: 4px solid rgba(0, 0, 0, 0.1); border-left-color: #007bff; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 0 auto; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .footer { background-color: #343a40; color: white; padding: 20px 0; text-align: center; margin-top: 40px; }
         .footer-content { width: 90%; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; text-align: right; }
-        .contact-info { flex: 1 1 0; min-width: 200px; margin-bottom: 10px; text-align: right; }
-        .copyright { text-align: center; width: 100%; margin-top: 10px; }
-        .footer h4 { color: #ffc107; margin-bottom: 10px; font-size: 1.1em; }
-        .footer p { margin: 3px 0; font-size: 0.8em; }
-
-        @media (max-width: 768px) {
-            .navbar-container { flex-direction: column; }
-            .nav-links { margin-top: 10px; text-align: center; }
-            .nav-links a { margin: 0 8px; }
-            .hero { padding: 40px 20px; }
-            .hero h1 { font-size: 2em; }
-            .footer-content { flex-direction: column; align-items: center; }
-            .contact-info { text-align: center; width: 100%; }
-        }
+        .contact-info { flex: 1 1 0; min-width: 200px; margin-bottom: 10px; }
+        .copyright { text-align: center; width: 100%; margin-top: 10px; font-size: 0.8em; }
+        .footer h4 { color: #ffc107; margin-bottom: 10px; }
+        @media (max-width: 768px) { .navbar-container { flex-direction: column; } .footer-content { flex-direction: column; align-items: center; text-align: center; } }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
         <div class="navbar-container">
-            <div class="logo"><a href="#home">مدرسة الخدمة الثانوية العامة المشتركة</a></div>
+            <div class="logo"><a href="#">مدرسة الخدمة الثانوية العامة</a></div>
             <div class="nav-links">
                 <a href="#home">الرئيسية</a>
                 <a href="#contact">تواصل معنا</a>
@@ -73,7 +61,7 @@
         <h2>كلمة المدير</h2>
         <div class="director-message">
             <p><strong>مرحباً بكم في بيتنا التعليمي،</strong></p>
-            <p>أبنائي وبناتي الأعزاء، أولياء الأمور الكرام، نفخر في مدرسة الخدمة بكوننا بيئة محفزة تجمع بين التميز الأكاديمي والرعاية الشاملة. نلتزم بغرس القيم والأخلاق الحميدة وتوفير أحدث الأدوات التعليمية لضمان أن يمتلك خريجونا مفاتيح النجاح في المرحلة الجامعية والحياة المهنية.</p>
+            <p>أبنائي وبناتي الأعزاء، أولياء الأمور الكرام، نفخر في مدرسة الخدمة بكوننا بيئة محفزة تجمع بين التميز الأكاديمي والرعاية الشاملة. نلتزم بغرس القيم والأخلاق الحميدة وتوفير أحدث الأدوات التعليمية لضمان نجاحكم.</p>
             <strong>المدير / رجب عبد العزيز سالم</strong>
         </div>
     </section>
@@ -82,31 +70,10 @@
         <h2>استعلام بيانات منصة كوريو (AI)</h2>
         <div class="inquiry-box">
             <label for="nationalId">الرجاء إدخال الرقم القومي للطالب:</label>
-            <input type="text" id="nationalId" placeholder="أدخل الرقم القومي 14 رقم..." maxlength="14">
-            <button onclick="searchStudent()">البحث عن بيانات الدخول</button>
-            <div id="results-area">
-                </div>
+            <input type="text" id="nationalId" placeholder="14 رقم..." maxlength="14">
+            <button onclick="searchStudent()">البحث عن البيانات</button>
+            <div id="results-area"></div>
         </div>
-    </section>
-
-    <section class="section">
-        <h2>أخبار وإعلانات هامة</h2>
-        <table class="news-table">
-            <thead>
-                <tr>
-                    <th>التاريخ</th>
-                    <th>العنوان</th>
-                    <th>التفاصيل</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>05/10/2025</td>
-                    <td>بيانات الدخول لمنصة الذكاء الإصطناعي</td>
-                    <td>يرجى استخدام أداة الاستعلام أعلاه للحصول على بيانات دخول منصة كوريو.</td>
-                </tr>
-            </tbody>
-        </table>
     </section>
 
     <footer id="contact" class="footer">
@@ -114,34 +81,52 @@
             <div class="contact-info">
                 <h4>بيانات الاتصال</h4>
                 <p>العنوان: قرية واحد - مركز إدكو - محافظة البحيرة</p>
-                <p>هاتف: 012345678910</p>
                 <p>بريد إلكتروني: alkhedma.sec@gmail.com</p>
             </div>
             <div class="copyright">
-                <p>حقوق النشر © 2025 مدرسة الخدمة الثانوية العامة المشتركة. جميع الحقوق محفوظة.</p>
-                <p>مع تحيات محمود عادل</p>
+                <p>حقوق النشر © 2026 مدرسة الخدمة الثانوية العامة المشتركة. جميع الحقوق محفوظة.</p>
+                <p>بواسطة محمود عادل</p>
             </div>
         </div>
     </footer>
 
     <script>
-        function searchStudent() {
-            const id = document.getElementById('nationalId').value;
+        async function searchStudent() {
+            const idInput = document.getElementById('nationalId').value.trim();
             const resultsArea = document.getElementById('results-area');
-            
-            if(id === "12345678901234") { // مثال فقط
-                resultsArea.innerHTML = `
-                    <div class="success-message">تم العثور على بيانات الطالب بنجاح!</div>
-                    <table class="results-table">
-                        <tbody>
-                            <tr><td>الاسم الكامل</td><td>ملك مصطفى حلمى ابراهيم حجاج</td></tr>
-                            <tr><td>الكود</td><td>463750647</td></tr>
-                            <tr><td>اليوزر نيم</td><td>463750647</td></tr>
-                            <tr><td>كلمة المرور</td><td><span style="color:#dc3545; font-weight:700;">_cDt!n!6</span></td></tr>
-                        </tbody>
-                    </table>`;
-            } else {
-                resultsArea.innerHTML = `<div style="color:red;">يرجى إدخال رقم قومي صحيح للتجربة.</div>`;
+
+            if (idInput.length !== 14 || isNaN(idInput)) {
+                resultsArea.innerHTML = `<div class="error-message">يرجى إدخال 14 رقم صحيح.</div>`;
+                return;
+            }
+
+            resultsArea.innerHTML = `<div class="spinner"></div>`;
+
+            try {
+                // Fetch the JSON file from your repository
+                const response = await fetch('data.json');
+                if (!response.ok) throw new Error('Could not load data');
+                
+                const data = await response.json();
+
+                // Search logic
+                const student = data.find(item => item["الرقم القومي"] == idInput);
+
+                if (student) {
+                    const params = new URLSearchParams({
+                        name: student["الاسم"] || "غير متوفر",
+                        code: student["الكود"] || "غير متوفر",
+                        user: student["اسم المستخدم"] || "غير متوفر",
+                        pass: student["كلمة المرور"] || "غير متوفر",
+                        link: student["رابط منصة "] || "https://me-portal.qureo.education"
+                    }).toString();
+
+                    window.location.href = `result.html?${params}`;
+                } else {
+                    resultsArea.innerHTML = `<div class="error-message">هذا الرقم القومي غير مسجل لدينا.</div>`;
+                }
+            } catch (error) {
+                resultsArea.innerHTML = `<div class="error-message">خطأ في الاتصال بالبيانات. تأكد من رفع ملف data.json</div>`;
             }
         }
     </script>
