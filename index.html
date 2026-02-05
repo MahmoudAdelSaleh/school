@@ -8,7 +8,7 @@
     <style>
         :root { --primary: #007bff; --secondary: #ffc107; --dark: #343a40; --light: #f8f9fa; }
         body { font-family: 'Tajawal', sans-serif; margin: 0; padding: 0; background-color: var(--light); color: var(--dark); text-align: right; }
-        
+
         /* Navbar */
         .navbar { background-color: var(--primary); color: white; padding: 15px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .navbar-container { width: 90%; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
@@ -25,29 +25,28 @@
         .section-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin: -30px auto 30px; position: relative; z-index: 10; }
         .section-title { color: var(--primary); border-right: 5px solid var(--secondary); padding-right: 15px; margin-bottom: 20px; }
         .director-p { line-height: 1.8; text-align: justify; color: #555; }
-        
-        /* الرابط الاحترافي تحت كلمة المدير */
+
+        /* رابط النتيجة المستقلة */
         .result-link-wrapper { margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; }
         .btn-result-link { display: inline-flex; align-items: center; color: #28a745; text-decoration: none; font-weight: 700; font-size: 1.1em; transition: 0.3s; }
         .btn-result-link:hover { color: #1e7e34; transform: scale(1.02); }
-        .btn-result-link i { margin-left: 8px; }
 
         /* Qureo Inquiry Box */
         .inquiry-container { background: #e9ecef; padding: 40px 0; margin-top: 20px; border-radius: 20px; }
         .inquiry-box { background: white; padding: 30px; border-radius: 12px; max-width: 500px; margin: 0 auto; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; }
+        .inquiry-box h2 { color: var(--primary); margin-top:0; }
         .inquiry-box input { width: 100%; padding: 12px; margin: 15px 0; border: 2px solid #ddd; border-radius: 8px; font-size: 1em; text-align: center; box-sizing: border-box; }
-        .inquiry-box input:focus { border-color: var(--primary); outline: none; }
         .btn-search { background: var(--primary); color: white; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; font-weight: 700; width: 100%; font-size: 1.1em; }
-        
-        /* Results Display Area */
+
+        /* Results Area */
         #q-display { margin-top: 20px; display: none; text-align: right; animation: fadeIn 0.5s; }
         .data-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
         .data-table td { padding: 10px; border-bottom: 1px solid #eee; }
         .label { font-weight: 700; color: var(--primary); width: 40%; }
-        
+
         .footer { background: var(--dark); color: white; padding: 30px 0; text-align: center; margin-top: 50px; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
+
         @media (max-width: 600px) { .hero h1 { font-size: 1.6em; } }
     </style>
 </head>
@@ -77,14 +76,14 @@
 
             <div class="result-link-wrapper">
                 <a href="result.html" class="btn-result-link">
-                    <span>📑 استعلام عن نتيجة الامتحانات (اضغط هنا)</span>
+                    <span>📑 استعلام عن نتيجة الامتحانات (اضغط هنا للذهاب لصفحة النتيجة)</span>
                 </a>
             </div>
         </section>
 
         <div class="inquiry-container">
             <div class="inquiry-box">
-                <h2 style="color: var(--primary); margin-top:0;">منصة كوريو (AI)</h2>
+                <h2>منصة كوريو (AI)</h2>
                 <p>أدخل الرقم القومي الخاص بك للحصول على بيانات الدخول</p>
                 <input type="text" id="nationalId" placeholder="أدخل الـ 14 رقم..." maxlength="14">
                 <button class="btn-search" onclick="fetchQureoData()">استعلام الآن</button>
@@ -106,43 +105,67 @@
 
     <footer class="footer">
         <p>حقوق النشر © 2026 - مدرسة الخدمة الثانوية</p>
-        <p>تطوير: الأستاذ محمود عادل</p>
+        <p>تطوير الأستاذ: محمود عادل</p>
     </footer>
 
-    <script>
-        async function fetchQureoData() {
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        // إعدادات Firebase الخاصة بك
+        const firebaseConfig = {
+          apiKey: "AIzaSyAxyKaH34L-IDFOA4j4YMHAFfuYKaA-BjQ",
+          authDomain: "khedma-sec.firebaseapp.com",
+          projectId: "khedma-sec",
+          storageBucket: "khedma-sec.firebasestorage.app",
+          messagingSenderId: "671564737679",
+          appId: "1:671564737679:web:212314283f72968ecad4fa",
+          measurementId: "G-LHB4Y87ZT6"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // دالة جلب البيانات من منصة كوريو (Realtime Database)
+        window.fetchQureoData = async function() {
             const idInput = document.getElementById('nationalId').value.trim();
             const display = document.getElementById('q-display');
             const error = document.getElementById('q-error');
 
-            // إعادة تعيين الواجهة
             display.style.display = "none";
             error.innerText = "";
 
             if (idInput.length !== 14) {
-                error.innerText = "يجب إدخال 14 رقم.";
+                error.innerText = "يجب إدخال 14 رقم صحيح.";
                 return;
             }
 
             try {
-                const response = await fetch('data.json');
-                if (!response.ok) throw new Error();
-                const data = await response.json();
+                // الكود بيبحث في 'students' داخل الداتابيز
+                const dbRef = ref(db);
+                const snapshot = await get(child(dbRef, 'students'));
+                
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    // البحث في قائمة الجيسون
+                    const student = data.find(s => String(s["الرقم القومي"]) === idInput);
 
-                // البحث عن الطالب
-                const student = data.find(s => s["الرقم القومي"] == idInput);
-
-                if (student) {
-                    document.getElementById('s-name').innerText = student["الاسم"];
-                    document.getElementById('s-user').innerText = student["اسم المستخدم"];
-                    document.getElementById('s-pass').innerText = student["كلمة المرور"];
-                    document.getElementById('s-link').href = student["رابط منصة "] || "https://me-portal.qureo.education";
-                    display.style.display = "block";
+                    if (student) {
+                        document.getElementById('s-name').innerText = student["الاسم"];
+                        document.getElementById('s-user').innerText = student["اسم المستخدم"];
+                        document.getElementById('s-pass').innerText = student["كلمة المرور"];
+                        // استخدام "رابط منصة " بالمسافة كما في الجيسون الخاص بك
+                        document.getElementById('s-link').href = student["رابط منصة "] || "https://me-portal.qureo.education";
+                        display.style.display = "block";
+                    } else {
+                        error.innerText = "عفواً، الرقم القومي غير موجود.";
+                    }
                 } else {
-                    error.innerText = "عفواً، الرقم القومي غير موجود.";
+                    error.innerText = "قاعدة البيانات فارغة.";
                 }
             } catch (err) {
-                error.innerText = "حدث خطأ في قراءة ملف البيانات.";
+                error.innerText = "خطأ في جلب البيانات من فاير بيز.";
+                console.error(err);
             }
         }
     </script>
