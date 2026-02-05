@@ -3,130 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مدرسة الخدمة الثانوية العامة المشتركة - الرئيسية</title>
+    <title>مدرسة الخدمة الثانوية العامة المشتركة</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Tajawal', sans-serif; margin: 0; padding: 0; background-color: #f8f9fa; color: #343a40; text-align: right; }
-        .navbar { background-color: #007bff; color: white; padding: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        :root { --primary: #007bff; --secondary: #ffc107; --dark: #343a40; --light: #f8f9fa; }
+        body { font-family: 'Tajawal', sans-serif; margin: 0; padding: 0; background-color: var(--light); color: var(--dark); text-align: right; }
+        
+        /* Navbar */
+        .navbar { background-color: var(--primary); color: white; padding: 15px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .navbar-container { width: 90%; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo a { color: white; text-decoration: none; font-size: 1.5em; font-weight: 700; }
-        .nav-links a { color: white; text-decoration: none; margin-right: 20px; font-weight: 400; transition: color 0.3s; }
-        .nav-links a:hover { color: #ffc107; }
-        .hero { background-color: #007bff; color: white; text-align: center; padding: 50px 20px; }
-        .hero h1 { font-size: 2.5em; margin-bottom: 5px; }
-        .hero h2 { font-size: 1.2em; margin-bottom: 0; font-weight: 400; }
-        .section { padding: 40px 0; width: 90%; max-width: 1200px; margin: 0 auto; }
-        .section h2 { text-align: center; color: #007bff; margin-bottom: 30px; font-weight: 700; border-bottom: 3px solid #ffc107; display: block; width: fit-content; margin-left: auto; margin-right: auto; padding-bottom: 5px; }
-        .director-message { background-color: white; padding: 25px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05); text-align: justify; }
-        .director-message p { line-height: 1.7; margin-bottom: 10px; }
-        .director-message strong { display: block; margin-top: 15px; text-align: left; font-weight: 700; }
-        .inquiry-box { background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 15px rgba(0,0,0,0.1); max-width: 500px; margin: 20px auto; text-align: center; border: 1px solid #007bff; }
-        .inquiry-box label { display: block; margin-bottom: 8px; font-weight: 700; color: #007bff; font-size: 1em; }
-        .inquiry-box input[type="text"] { width: 100%; padding: 10px; margin-bottom: 15px; border: 2px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 0.9em; transition: border-color 0.3s; text-align: center; }
-        .inquiry-box input[type="text"]:focus { border-color: #28a745; outline: none; }
-        .inquiry-box button { background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 1em; transition: background-color 0.3s, transform 0.1s; width: 100%; }
-        .inquiry-box button:hover { background-color: #0056b3; transform: translateY(-2px); }
-        #results-area { margin-top: 20px; text-align: center; min-height: 40px; }
-        .error-message { color: #dc3545; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 10px; border-radius: 6px; font-size: 0.9em; }
-        .spinner { border: 4px solid rgba(0, 0, 0, 0.1); border-left-color: #007bff; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 0 auto; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-        .footer { background-color: #343a40; color: white; padding: 20px 0; text-align: center; margin-top: 40px; }
-        .footer-content { width: 90%; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; text-align: right; }
-        .contact-info { flex: 1 1 0; min-width: 200px; margin-bottom: 10px; }
-        .copyright { text-align: center; width: 100%; margin-top: 10px; font-size: 0.8em; }
-        .footer h4 { color: #ffc107; margin-bottom: 10px; }
-        @media (max-width: 768px) { .navbar-container { flex-direction: column; } .footer-content { flex-direction: column; align-items: center; text-align: center; } }
+        .logo a { color: white; text-decoration: none; font-size: 1.4em; font-weight: 700; }
+
+        /* Hero Section */
+        .hero { background: linear-gradient(45deg, #007bff, #0056b3); color: white; text-align: center; padding: 60px 20px; }
+        .hero h1 { margin: 0; font-size: 2.2em; }
+        .hero p { font-size: 1.1em; opacity: 0.9; margin-top: 10px; }
+
+        .container { width: 90%; max-width: 1000px; margin: 0 auto; }
+
+        /* Director Section */
+        .section-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin: -30px auto 30px; position: relative; z-index: 10; }
+        .section-title { color: var(--primary); border-right: 5px solid var(--secondary); padding-right: 15px; margin-bottom: 20px; }
+        .director-p { line-height: 1.8; text-align: justify; color: #555; }
+        
+        /* الرابط الاحترافي تحت كلمة المدير */
+        .result-link-wrapper { margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; }
+        .btn-result-link { display: inline-flex; align-items: center; color: #28a745; text-decoration: none; font-weight: 700; font-size: 1.1em; transition: 0.3s; }
+        .btn-result-link:hover { color: #1e7e34; transform: scale(1.02); }
+        .btn-result-link i { margin-left: 8px; }
+
+        /* Qureo Inquiry Box */
+        .inquiry-container { background: #e9ecef; padding: 40px 0; margin-top: 20px; border-radius: 20px; }
+        .inquiry-box { background: white; padding: 30px; border-radius: 12px; max-width: 500px; margin: 0 auto; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; }
+        .inquiry-box input { width: 100%; padding: 12px; margin: 15px 0; border: 2px solid #ddd; border-radius: 8px; font-size: 1em; text-align: center; box-sizing: border-box; }
+        .inquiry-box input:focus { border-color: var(--primary); outline: none; }
+        .btn-search { background: var(--primary); color: white; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; font-weight: 700; width: 100%; font-size: 1.1em; }
+        
+        /* Results Display Area */
+        #q-display { margin-top: 20px; display: none; text-align: right; animation: fadeIn 0.5s; }
+        .data-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .data-table td { padding: 10px; border-bottom: 1px solid #eee; }
+        .label { font-weight: 700; color: var(--primary); width: 40%; }
+        
+        .footer { background: var(--dark); color: white; padding: 30px 0; text-align: center; margin-top: 50px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        @media (max-width: 600px) { .hero h1 { font-size: 1.6em; } }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
         <div class="navbar-container">
-            <div class="logo"><a href="#">مدرسة الخدمة الثانوية العامة</a></div>
-            <div class="nav-links">
-                <a href="#home">الرئيسية</a>
-                <a href="#contact">تواصل معنا</a>
-            </div>
+            <div class="logo"><a href="#">مدرسة الخدمة الثانوية</a></div>
         </div>
     </nav>
 
-    <header id="home" class="hero">
-        <div class="hero-content">
+    <header class="hero">
+        <div class="container">
             <h1>مدرسة الخدمة الثانوية العامة المشتركة</h1>
-            <h2>"تعليم متكامل، قيادة فاعلة، ومواطنة مسؤولة."</h2>
+            <p>نحو مستقبل تعليمي رقمي متميز</p>
         </div>
     </header>
 
-    <section class="section">
-        <h2>كلمة المدير</h2>
-        <div class="director-message">
-            <p><strong>مرحباً بكم في بيتنا التعليمي،</strong></p>
-            <p>أبنائي وبناتي الأعزاء، أولياء الأمور الكرام، نفخر في مدرسة الخدمة بكوننا بيئة محفزة تجمع بين التميز الأكاديمي والرعاية الشاملة. نلتزم بغرس القيم والأخلاق الحميدة وتوفير أحدث الأدوات التعليمية لضمان نجاحكم.</p>
-            <strong>المدير / رجب عبد العزيز سالم</strong>
-        </div>
-    </section>
-
-    <section class="section" style="background-color: #e9ecef;">
-        <h2>استعلام بيانات منصة كوريو (AI)</h2>
-        <div class="inquiry-box">
-            <label for="nationalId">الرجاء إدخال الرقم القومي للطالب:</label>
-            <input type="text" id="nationalId" placeholder="14 رقم..." maxlength="14">
-            <button onclick="searchStudent()">البحث عن البيانات</button>
-            <div id="results-area"></div>
-        </div>
-    </section>
-
-    <footer id="contact" class="footer">
-        <div class="footer-content">
-            <div class="contact-info">
-                <h4>بيانات الاتصال</h4>
-                <p>العنوان: قرية واحد - مركز إدكو - محافظة البحيرة</p>
-                <p>بريد إلكتروني: alkhedma.sec@gmail.com</p>
+    <div class="container">
+        <section class="section-card">
+            <h2 class="section-title">كلمة المدير</h2>
+            <div class="director-p">
+                <p><strong>أبنائي الطلاب، زملائي المعلمون..</strong></p>
+                <p>نسعى دائماً لتوفير كافة السبل التي تضمن لكم تجربة تعليمية رائدة. إن التحول الرقمي في مدرسة الخدمة ليس مجرد شعار، بل هو واقع نعيشه لتسهيل الوصول للمعلومات والنتائج بكل دقة وشفافية.</p>
+                <strong>المدير / رجب عبد العزيز سالم</strong>
             </div>
-            <div class="copyright">
-                <p>حقوق النشر © 2026 مدرسة الخدمة الثانوية العامة المشتركة. جميع الحقوق محفوظة.</p>
-                <p>بواسطة محمود عادل</p>
+
+            <div class="result-link-wrapper">
+                <a href="result.html" class="btn-result-link">
+                    <span>📑 استعلام عن نتيجة الامتحانات (اضغط هنا)</span>
+                </a>
+            </div>
+        </section>
+
+        <div class="inquiry-container">
+            <div class="inquiry-box">
+                <h2 style="color: var(--primary); margin-top:0;">منصة كوريو (AI)</h2>
+                <p>أدخل الرقم القومي الخاص بك للحصول على بيانات الدخول</p>
+                <input type="text" id="nationalId" placeholder="أدخل الـ 14 رقم..." maxlength="14">
+                <button class="btn-search" onclick="fetchQureoData()">استعلام الآن</button>
+
+                <div id="q-display">
+                    <table class="data-table">
+                        <tr><td class="label">الاسم:</td><td id="s-name"></td></tr>
+                        <tr><td class="label">اسم المستخدم:</td><td id="s-user"></td></tr>
+                        <tr><td class="label">كلمة المرور:</td><td id="s-pass" style="color:red; font-weight:bold;"></td></tr>
+                    </table>
+                    <div style="margin-top:15px;">
+                        <a id="s-link" href="#" target="_blank" style="background:#28a745; color:white; padding:8px 15px; text-decoration:none; border-radius:5px; display:inline-block;">فتح المنصة مباشرة</a>
+                    </div>
+                </div>
+                <div id="q-error" style="color:red; margin-top:10px; font-weight:bold;"></div>
             </div>
         </div>
+    </div>
+
+    <footer class="footer">
+        <p>حقوق النشر © 2026 - مدرسة الخدمة الثانوية</p>
+        <p>تطوير: الأستاذ محمود عادل</p>
     </footer>
 
     <script>
-        async function searchStudent() {
+        async function fetchQureoData() {
             const idInput = document.getElementById('nationalId').value.trim();
-            const resultsArea = document.getElementById('results-area');
+            const display = document.getElementById('q-display');
+            const error = document.getElementById('q-error');
 
-            if (idInput.length !== 14 || isNaN(idInput)) {
-                resultsArea.innerHTML = `<div class="error-message">يرجى إدخال 14 رقم صحيح.</div>`;
+            // إعادة تعيين الواجهة
+            display.style.display = "none";
+            error.innerText = "";
+
+            if (idInput.length !== 14) {
+                error.innerText = "يجب إدخال 14 رقم.";
                 return;
             }
 
-            resultsArea.innerHTML = `<div class="spinner"></div>`;
-
             try {
-                // Fetch the JSON file from your repository
                 const response = await fetch('data.json');
-                if (!response.ok) throw new Error('Could not load data');
-                
+                if (!response.ok) throw new Error();
                 const data = await response.json();
 
-                // Search logic
-                const student = data.find(item => item["الرقم القومي"] == idInput);
+                // البحث عن الطالب
+                const student = data.find(s => s["الرقم القومي"] == idInput);
 
                 if (student) {
-                    const params = new URLSearchParams({
-                        name: student["الاسم"] || "غير متوفر",
-                        code: student["الكود"] || "غير متوفر",
-                        user: student["اسم المستخدم"] || "غير متوفر",
-                        pass: student["كلمة المرور"] || "غير متوفر",
-                        link: student["رابط منصة "] || "https://me-portal.qureo.education"
-                    }).toString();
-
-                    window.location.href = `result.html?${params}`;
+                    document.getElementById('s-name').innerText = student["الاسم"];
+                    document.getElementById('s-user').innerText = student["اسم المستخدم"];
+                    document.getElementById('s-pass').innerText = student["كلمة المرور"];
+                    document.getElementById('s-link').href = student["رابط منصة "] || "https://me-portal.qureo.education";
+                    display.style.display = "block";
                 } else {
-                    resultsArea.innerHTML = `<div class="error-message">هذا الرقم القومي غير مسجل لدينا.</div>`;
+                    error.innerText = "عفواً، الرقم القومي غير موجود.";
                 }
-            } catch (error) {
-                resultsArea.innerHTML = `<div class="error-message">خطأ في الاتصال بالبيانات. تأكد من رفع ملف data.json</div>`;
+            } catch (err) {
+                error.innerText = "حدث خطأ في قراءة ملف البيانات.";
             }
         }
     </script>
